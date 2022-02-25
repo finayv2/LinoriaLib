@@ -1131,6 +1131,7 @@ do
         local Textbox = {
             Value = Info.Default or '';
             Numeric = Info.Numeric or false;
+            Finished = Info.Finished or false;
             Type = 'Input';
         };
 
@@ -1216,8 +1217,10 @@ do
 
             Textbox.Value = Text;
             Box.Text = Text;
-                
-            if Textbox.Changed then
+             
+            
+            if Textbox.Changed and not Textbox.Finished then
+                print("Changed from :SetValue")
                 Textbox.Changed();
             end;
         end;
@@ -1226,6 +1229,15 @@ do
             Textbox:SetValue(Box.Text);
             Library:AttemptSave();
         end);
+        
+        Box.FocusLost:Connect(function()
+            if not Textbox.Finished then return end
+                
+            if Textbox.Changed then
+                print("Text From FocusLost")
+                Textbox.Changed()
+            end
+        end)
 
         Library:AddToRegistry(Box, {
             TextColor3 = 'FontColor';

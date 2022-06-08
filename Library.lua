@@ -1235,6 +1235,8 @@ do
             Parent = Container;
         });
 
+        Groupbox:AddBlank(1);
+
         local TextBoxOuter = Library:Create('Frame', {
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(1, -4, 0, 20);

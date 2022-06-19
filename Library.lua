@@ -943,7 +943,6 @@ do
                         end;
                     elseif Input.UserInputType == Enum.UserInputType.Keyboard then
                         if Input.KeyCode.Name == Key then
-                            print("Jit")
                             KeyPicker.Toggled = not KeyPicker.Toggled;
                             KeyPicker:DoClick()
                         end;
